@@ -2,7 +2,9 @@ package com.javarush.springmvc.service;
 
 import com.javarush.springmvc.dto.UsersDto;
 import com.javarush.springmvc.entity.Users;
+import org.springframework.stereotype.Component;
 
+@Component
 public class UsersConverter {
 
     public Users fromUserDtoToUser(UsersDto usersDto) {

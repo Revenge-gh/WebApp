@@ -9,7 +9,7 @@ public interface UsersService {
 
     UsersDto saveUser(UsersDto usersDto) throws ValidationException;
 
-    void deleteUser(String userId);
+    void deleteUser(Integer userId);
 
     UsersDto findByLogin(UsersDto login);
 
