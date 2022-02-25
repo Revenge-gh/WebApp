@@ -12,7 +12,7 @@ import static java.util.Objects.isNull;
 
 @Service
 @AllArgsConstructor
-public class DefaultUsersService implements UsersService {
+public class DefaultUsersService {
 
     private void validateUserDto(UsersDto usersDto) throws ValidationException {
         if (isNull(usersDto)) {
@@ -22,33 +22,6 @@ public class DefaultUsersService implements UsersService {
         if (isNull(usersDto.getLogin()) || usersDto.getLogin().isEmpty()) {
             throw new ValidationException("Login is empty");
         }
-    }
-
-    @Override
-    public UsersDto saveUser(UsersDto usersDto) throws ValidationException {
-        validateUserDto(usersDto);
-
-        Users users = new Users();
-        users.setName(usersDto.getName());
-        users.setLogin(usersDto.getLogin());
-        users.setEmail(usersDto.getEmail());
-
-        return null;
-    }
-
-    @Override
-    public void deleteUser(String userId) {
-
-    }
-
-    @Override
-    public UsersDto findByLogin(UsersDto login) {
-        return null;
-    }
-
-    @Override
-    public List<UsersDto> findAll() {
-        return null;
     }
 
 }
