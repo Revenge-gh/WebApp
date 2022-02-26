@@ -5,9 +5,10 @@ import com.javarush.springmvc.exception.ValidationException;
 import com.javarush.springmvc.service.UsersService;
 import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @AllArgsConstructor
 @RestController
@@ -23,5 +24,23 @@ public class UsersController {
         return usersService.saveUser(usersDto);
     }
 
+    @GetMapping("/findAll")
+    public List<UsersDto> findAllUsers() {
+        log.info("Handling find all users request");
+        return usersService.findAll();
+    }
+
+    @GetMapping("/findByLogin")
+    public UsersDto findByLogin(@RequestParam String login) {
+        log.info("Handling find user by login request " + login);
+        return usersService.findByLogin(login);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Void> deleteUsers(@PathVariable Integer id) {
+        log.info("Handling delete user request" + id);
+        usersService.deleteUser(id);
+        return ResponseEntity.ok().build();
+    }
 
 }
