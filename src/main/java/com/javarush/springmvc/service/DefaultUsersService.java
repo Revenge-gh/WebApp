@@ -44,8 +44,8 @@ public class DefaultUsersService implements UsersService {
     }
 
     @Override
-    public UsersDto findByLogin(UsersDto login) {
-        Users users = usersRepository.findByLogin(login.getLogin());
+    public UsersDto findByLogin(String login) {
+        Users users = usersRepository.findByLogin(login);
 
         if (users != null) {
             return usersConverter.fromUserToUserDto(users);

@@ -10,17 +10,17 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@AllArgsConstructor
 @RestController
 @RequestMapping("/users")
+@AllArgsConstructor
 @Log
 public class UsersController {
 
     private final UsersService usersService;
 
     @PostMapping("/save")
-    public UsersDto saveUsers(UsersDto usersDto) throws ValidationException {
-       log.info("Handling save users: " + usersDto);
+    public UsersDto saveUsers(@RequestBody UsersDto usersDto) throws ValidationException {
+        log.info("Handling save users: " + usersDto);
         return usersService.saveUser(usersDto);
     }
 
@@ -32,15 +32,14 @@ public class UsersController {
 
     @GetMapping("/findByLogin")
     public UsersDto findByLogin(@RequestParam String login) {
-        log.info("Handling find user by login request " + login);
+        log.info("Handling find by login request: " + login);
         return usersService.findByLogin(login);
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deleteUsers(@PathVariable Integer id) {
-        log.info("Handling delete user request" + id);
+        log.info("Handling delete user request: " + id);
         usersService.deleteUser(id);
         return ResponseEntity.ok().build();
     }
-
 }
