@@ -10,11 +10,9 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 public class Users {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
     @Column
     private String name;
     @Column
