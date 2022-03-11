@@ -1,5 +1,7 @@
 package com.javarush.springmvc.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -9,6 +11,8 @@ import javax.persistence.*;
 @Table(name = "users_table")
 @Data
 @NoArgsConstructor
+@Builder
+@AllArgsConstructor
 public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
