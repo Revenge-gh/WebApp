@@ -4,10 +4,9 @@ import com.javarush.springmvc.dto.UsersDto;
 import com.javarush.springmvc.entity.Users;
 import org.springframework.stereotype.Component;
 
-@Component
 public class UsersConverter {
 
-    public Users fromUserDtoToUser(UsersDto usersDto) {
+    public static Users fromUserDtoToUser(UsersDto usersDto) {
         return Users.builder()
                 .id(usersDto.getId())
                 .name(usersDto.getName())
@@ -16,7 +15,7 @@ public class UsersConverter {
                 .build();
     }
 
-    public UsersDto fromUserToUserDto(Users users) {
+    public static UsersDto fromUserToUserDto(Users users) {
         return UsersDto.builder()
                 .id(users.getId())
                 .name(users.getName())
