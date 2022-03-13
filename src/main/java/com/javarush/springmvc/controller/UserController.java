@@ -14,7 +14,7 @@ import java.util.List;
 @RequestMapping("/users")
 @AllArgsConstructor
 @Log
-public class UsersController {
+public class UserController {
 
     private final UsersService usersService;
 

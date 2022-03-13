@@ -1,4 +1,4 @@
-package com.javarush.springmvc.service;
+package com.javarush.springmvc.converter;
 
 import com.javarush.springmvc.dto.UsersDto;
 import com.javarush.springmvc.entity.Users;
@@ -8,12 +8,12 @@ import org.springframework.stereotype.Component;
 public class UsersConverter {
 
     public Users fromUserDtoToUser(UsersDto usersDto) {
-        Users users = new Users();
-        users.setId(usersDto.getId());
-        users.setName(usersDto.getName());
-        users.setLogin(usersDto.getLogin());
-        users.setEmail(usersDto.getEmail());
-        return users;
+        return Users.builder()
+                .id(usersDto.getId())
+                .name(usersDto.getName())
+                .email(usersDto.getEmail())
+                .login(usersDto.getLogin())
+                .build();
     }
 
     public UsersDto fromUserToUserDto(Users users) {

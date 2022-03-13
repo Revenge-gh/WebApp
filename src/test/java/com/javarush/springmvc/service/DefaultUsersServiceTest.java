@@ -1,5 +1,6 @@
 package com.javarush.springmvc.service;
 
+import com.javarush.springmvc.converter.UsersConverter;
 import com.javarush.springmvc.dto.UsersDto;
 import com.javarush.springmvc.entity.Users;
 import com.javarush.springmvc.exception.ValidationException;
