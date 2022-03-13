@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static com.javarush.springmvc.converter.UsersConverter.*;
 import static java.util.Objects.isNull;
 
 @Service
@@ -18,7 +19,6 @@ import static java.util.Objects.isNull;
 public class DefaultUsersService implements UsersService {
 
     private final UsersRepository usersRepository;
-    private final UsersConverter usersConverter;
 
     private void validateUserDto(UsersDto usersDto) throws ValidationException {
         if (isNull(usersDto)) {
@@ -34,9 +34,9 @@ public class DefaultUsersService implements UsersService {
     @Override
     public UsersDto saveUser(UsersDto usersDto) throws ValidationException {
         validateUserDto(usersDto);
-        Users convertedUser = usersConverter.fromUserDtoToUser(usersDto);
+        Users convertedUser = fromUserDtoToUser(usersDto);
         Users savedUser = usersRepository.save(convertedUser);
-        return usersConverter.fromUserToUserDto(savedUser);
+        return fromUserToUserDto(savedUser);
     }
 
     @Override
@@ -49,7 +49,7 @@ public class DefaultUsersService implements UsersService {
         Users users = usersRepository.findByLogin(login);
 
         if (users != null) {
-            return usersConverter.fromUserToUserDto(users);
+            return fromUserToUserDto(users);
         }
 
         return null;
@@ -59,7 +59,7 @@ public class DefaultUsersService implements UsersService {
     public List<UsersDto> findAll() {
         return usersRepository.findAll()
                 .stream()
-                .map(usersConverter::fromUserToUserDto)
+                .map(UsersConverter::fromUserToUserDto)
                 .collect(Collectors.toList());
     }
 }
