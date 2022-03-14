@@ -1,8 +1,8 @@
 package com.javarush.springmvc.controller;
 
-import com.javarush.springmvc.dto.UsersDto;
+import com.javarush.springmvc.dto.UserDto;
 import com.javarush.springmvc.exception.ValidationException;
-import com.javarush.springmvc.service.UsersService;
+import com.javarush.springmvc.service.UserService;
 import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
 import org.springframework.http.ResponseEntity;
@@ -11,35 +11,35 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/user")
 @AllArgsConstructor
 @Log
 public class UserController {
 
-    private final UsersService usersService;
+    private final UserService userService;
 
     @PostMapping("/save")
-    public UsersDto saveUsers(@RequestBody UsersDto usersDto) throws ValidationException {
-        log.info("Handling save users: " + usersDto);
-        return usersService.saveUser(usersDto);
+    public UserDto saveUsers(@RequestBody UserDto userDto) throws ValidationException {
+        log.info("Handling save user: " + userDto);
+        return userService.saveUser(userDto);
     }
 
     @GetMapping("/findAll")
-    public List<UsersDto> findAllUsers() {
+    public List<UserDto> findAllUsers() {
         log.info("Handling find all users request");
-        return usersService.findAll();
+        return userService.findAll();
     }
 
     @GetMapping("/findByLogin")
-    public UsersDto findByLogin(@RequestParam String login) {
+    public UserDto findByLogin(@RequestParam String login) {
         log.info("Handling find by login request: " + login);
-        return usersService.findByLogin(login);
+        return userService.findByLogin(login);
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deleteUsers(@PathVariable Integer id) {
         log.info("Handling delete user request: " + id);
-        usersService.deleteUser(id);
+        userService.deleteUser(id);
         return ResponseEntity.ok().build();
     }
 }

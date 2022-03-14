@@ -58,13 +58,13 @@
                 document.getElementById("usersList").innerHTML = html;
             }
         };
-        xhttp.open("GET", "http://localhost:8080/users/findByLogin?login=" + login, true);
+        xhttp.open("GET", "http://localhost:8080/user/findByLogin?login=" + login, true);
         xhttp.send();
     }
 
     function deleteUser(userId) {
         var xhttp = new XMLHttpRequest();
-        xhttp.open("DELETE", "http://localhost:8080/users/delete/" + userId, true);
+        xhttp.open("DELETE", "http://localhost:8080/user/delete/" + userId, true);
         xhttp.send();
     }
 
@@ -74,7 +74,7 @@
         var userEmail = document.getElementById("user_email").value;
 
         var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance
-        xmlhttp.open("POST", "http://localhost:8080/users/save");
+        xmlhttp.open("POST", "http://localhost:8080/user/save");
         xmlhttp.setRequestHeader("Content-Type", "application/json");
         xmlhttp.send(JSON.stringify({name: userName, login: userLogin, email: userEmail}));
 
@@ -106,7 +106,7 @@
                 document.getElementById("usersList").innerHTML = html;
             }
         };
-        xhttp.open("GET", "http://localhost:8080/users/findAll", true);
+        xhttp.open("GET", "http://localhost:8080/user/findAll", true);
         xhttp.send();
     }
 
