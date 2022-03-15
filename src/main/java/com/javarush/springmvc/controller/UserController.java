@@ -19,13 +19,13 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/save")
-    public UserDto saveUsers(@RequestBody UserDto userDto) throws ValidationException {
+    public UserDto save(@RequestBody UserDto userDto) throws ValidationException {
         log.info("Handling save user: " + userDto);
         return userService.saveUser(userDto);
     }
 
     @GetMapping("/findAll")
-    public List<UserDto> findAllUsers() {
+    public List<UserDto> findAll() {
         log.info("Handling find all users request");
         return userService.findAll();
     }
@@ -37,7 +37,7 @@ public class UserController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Void> deleteUsers(@PathVariable Integer id) {
+    public ResponseEntity<Void> delete(@PathVariable Integer id) {
         log.info("Handling delete user request: " + id);
         userService.deleteUser(id);
         return ResponseEntity.ok().build();
